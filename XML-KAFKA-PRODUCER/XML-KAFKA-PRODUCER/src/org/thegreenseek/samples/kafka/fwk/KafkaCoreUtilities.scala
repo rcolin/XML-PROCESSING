@@ -8,9 +8,10 @@ import java.io.{FileInputStream, IOException}
   */
 object KafkaUtilities {
   def loadDefaultProperties: Properties = {
-    val dprops :Properties = new Properties()
+    val dprops = new Properties()
     try {
       dprops.loadFromXML(this.getClass.getResourceAsStream("DefaultKafkaProperties.xml"))
+      return dprops
     } catch {
       case ioex: IOException => {
         println("COULD NOT LOAD DEFAULT KAFKA PROPS")
@@ -20,10 +21,10 @@ object KafkaUtilities {
   }
 }
 
-class KafkaCore (props: Properties) {
+/*class KafkaCore (props: Properties) {
   var cprops = props != null ? props : {
     var dprops = new Properties()
   }
 
 
-}
+}*/

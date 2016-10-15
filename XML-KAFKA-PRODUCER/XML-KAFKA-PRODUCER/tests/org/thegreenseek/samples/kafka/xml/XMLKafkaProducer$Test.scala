@@ -1,8 +1,14 @@
 package org.thegreenseek.samples.kafka.xml
 
-import org.scalatest.{BeforeAndAfterEach, FunSuite}
+import java.util.Properties
 
+import org.thegreenseek.samples.kafka.fwk
+
+import org.scalatest.{BeforeAndAfterEach, FunSuite}
+import org.thegreenseek.samples.kafka.fwk.KafkaUtilities
 import scala.collection.mutable.ArrayBuffer
+import java.io.{InputStreamReader, BufferedReader, InputStream}
+import scala.collection.JavaConverters._
 
 /**
   * Created by Macphil11 on 19/07/2016.
@@ -17,6 +23,9 @@ class XMLKafkaProducer$Test extends FunSuite with BeforeAndAfterEach {
 
   }
 
+  /**
+    * Test testParseXmlFile
+    */
   test("testParseXmlFile") {
 
     val buf = ArrayBuffer[String]()
@@ -30,12 +39,22 @@ class XMLKafkaProducer$Test extends FunSuite with BeforeAndAfterEach {
     }
 
     XMLKafkaProducer.parseXmlFile(
-        "/Users/Macphil11/Documents/Projets/Hadoop/inputs_xml/landsat-small.xml",
+        "/Users/Macphil1/Documents/Projets/GitHub/XML-PROCESSING/XML-KAFKA-PRODUCER/XML-KAFKA-PRODUCER/data/landsat-medium.b.xml",
         printMessage,
         null,
         buf,
         topic
       )
+
+  }
+
+  test("testLoadDefaultProperties") {
+    var defProps = KafkaUtilities.loadDefaultProperties
+    assert(defProps != null)
+
+    if(defProps != null) {
+      defProps.asInstanceOf[Properties].asScala.toMap.foreach(item => println(item._1) + " : " + println(item._2))
+    }
 
   }
 

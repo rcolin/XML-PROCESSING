@@ -57,7 +57,7 @@ object XMLKafkaProducer {
   }
 
   /**
-    *
+    * Dedicated to Landsat model parsing
     * Parse XML file as events
     * @param xmlFile
     */
